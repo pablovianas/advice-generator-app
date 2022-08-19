@@ -1,15 +1,19 @@
-const buttonClick = document.querySelector('button');
-const updateDivAdvice = document.querySelector('.advice')
+const getNewAdviceButton = document.querySelector('.advice-update');
+const adviceNumber = document.querySelector('.advice-id')
+const adviceDescription= document.querySelector('.advice-description')
 
-buttonClick.addEventListener('click', async () => {
 
+async function getAdvice() {
     const response = await fetch('https://api.adviceslip.com/advice');
-    const adviceContent = await response.json();  
-
+    const adviceContent = await response.json()
     const adviceId = `Advice #${adviceContent.slip.id}`
-
     const adviceText = `"${adviceContent.slip.advice}"`
 
-    $('span').html(adviceId);
-    $('p').html(adviceText);
-})
+    adviceNumber.innerHTML = adviceId
+    adviceDescription.innerHTML = adviceText
+}
+
+getNewAdviceButton.addEventListener('click', getAdvice())
+window.onload = async () => {
+    getAdvice()
+}
