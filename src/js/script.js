@@ -1,8 +1,8 @@
-const adviceUpdateButton = document.querySelector(".advice-update");
+const adviceButton = document.querySelector(".advice-update");
 const adviceNumber = document.querySelector(".advice-id");
 const adviceDescription = document.querySelector(".advice-description");
 
-async function getAdvice() {
+async function adviceUpdateButton() {
     const response = await fetch("https://api.adviceslip.com/advice");
     const adviceContent = await response.json();
     const adviceId = `Advice #${adviceContent.slip.id}`;
@@ -12,6 +12,6 @@ async function getAdvice() {
     adviceDescription.innerHTML = adviceText;
 }
 
-adviceUpdateButton.addEventListener("click", getAdvice);
+adviceButton.addEventListener("click", adviceUpdateButton);
 
-getAdvice();
+adviceUpdateButton();
